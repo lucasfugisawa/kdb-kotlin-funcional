@@ -11,8 +11,8 @@ val imprimirEmMaiusculas: (String) -> Unit = {
 }
 
 // Lambda com desestruturação nos parâmetros
-val imprimirPessoa = { (nome, idade): Pair<String, Int> ->
-    println("Nome: $nome, Idade: $idade")
+val imprimirPessoa = { (nome, sobrenome): Pair<String, Int> ->
+    println("Nome: ${nome}, Idade: ${sobrenome}")
 }
 
 // Trailing lambda
@@ -24,11 +24,28 @@ fun processarNumeros(numeros: List<Int>, operacao: (Int) -> Int) {
 
 // Closure: lambda modificando variável do escopo externo
 fun main() {
+
+    val meuPar = Pair("Lucas", "Fugisawa")
+
+    val (nome, sobrenome) = meuPar
+
+    println(nome)
+    println(sobrenome)
+
+
     saudacao("Maria") // Saída: Olá, Maria!
 
     imprimirEmMaiusculas("kotlin") // Saída: KOTLIN
 
     imprimirPessoa(Pair("João", 30)) // Saída: Nome: João, Idade: 30
+
+    val numerosAProcessar = listOf(1, 2, 3)
+    processarNumeros(numerosAProcessar) duplicador@{
+        if (it == 0) {
+            return@duplicador - 1
+        }
+        it * 2
+    }
 
     processarNumeros(listOf(1, 2, 3)) { numero ->
         numero * 2

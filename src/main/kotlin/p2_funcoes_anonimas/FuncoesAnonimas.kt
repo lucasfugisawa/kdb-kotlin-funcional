@@ -1,7 +1,7 @@
 package com.fugisawa.p2_funcoes_anonimas
 
 // Função anônima com tipos explícitos
-val somar = fun(a: Int, b: Int): Int {
+var somar = fun(a: Int, b: Int): Int {
     return a + b
 }
 
@@ -17,6 +17,9 @@ val imprimirMensagem = fun(mensagem: String) {
 }
 
 fun main() {
+
+    somar = fun(x: Int, y: Int): Int = 5
+
     println("Soma: ${somar(5, 7)}") // Saída: Soma: 12
 
     println("Subtração: ${subtrair(10, 3)}") // Saída: Subtração: 7

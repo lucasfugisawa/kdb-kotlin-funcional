@@ -4,13 +4,15 @@ package com.fugisawa.p4_function_references
 fun dobro(x: Int) = x * 2
 
 // Classe com métodos
-class Operacoes {
-    fun triplo(x: Int) = x * 3
+class Operacoes(val y: Int? = null) {
+    fun triplo(x: Int) = x * 3 * (y ?: 1)
+
+    fun quadruplo(x: Int) = x * 4
 }
 
 // Funções sobrecarregadas
 fun sobrecarregada(x: Int) = x * 2
-fun sobrecarregada(x: String) = x.repeat(2)
+fun sobrecarregada(x: String) = x.length
 
 // Função genérica
 fun <T> identidade(x: T): T = x
@@ -20,13 +22,17 @@ fun String.exclamar() = "$this!"
 
 fun main() {
     // Referência a função top-level
-    val refDobro: (Int) -> Int = ::dobro
+    val refDobro = ::dobro
     println("Dobro: ${refDobro(4)}") // Saída: Dobro: 8
 
     // Referência a método de instância (bounded function reference)
     val operacoes = Operacoes()
     val refTriplo: (Int) -> Int = operacoes::triplo
     println("Triplo: ${refTriplo(3)}") // Saída: Triplo: 9
+
+    val operacoes5 = Operacoes(5)
+    val refTriplo5: (Int) -> Int = operacoes5::triplo
+    println("Triplo: ${refTriplo5(3)}") // Saída: Triplo: 9
 
     // Referência a extension function
     val refExclamar: (String) -> String = String::exclamar
@@ -40,15 +46,38 @@ fun main() {
     val refSobrecarregadaInt: (Int) -> Int = ::sobrecarregada
     println("Sobrecarregada Int: ${refSobrecarregadaInt(5)}") // Saída: Sobrecarregada Int: 10
 
-    val refSobrecarregadaString: (String) -> String = ::sobrecarregada
+    val refSobrecarregadaString: (String) -> Int = ::sobrecarregada
     println("Sobrecarregada String: ${refSobrecarregadaString("Oi")}") // Saída: Sobrecarregada String: OiOi
 
     // Referência a propriedade
     val mensagem = "Kotlin é legal"
-    val refLength: (String) -> Int = String::length
+    val refLength = String::length
     println("Comprimento: ${refLength(mensagem)}") // Saída: Comprimento: 14
-}
 
+
+    data class Person(val nome: String, val idade: Int)
+
+    // Lista de pessoas:
+    val listaPesoas = listOf(
+        Person("Fugisawa", 41),
+        Person("Luca", 10),
+        Person("Marianazinha", 16),
+        Person("Jo", 20)
+    )
+
+    val nomesCapitalizados =
+        listaPesoas
+            .map { pessoa -> pessoa.nome }
+            .map { nome -> nome.uppercase() }
+
+    val possuiNomeGrande: (Person) -> Boolean = { it.nome.length > 3 }
+
+    val mediaIdadePessoasNomeGrande =
+        listaPesoas
+            .filter(possuiNomeGrande)
+            .map(Person::idade)
+            .average()
+}
 
 /*
 RESUMO:

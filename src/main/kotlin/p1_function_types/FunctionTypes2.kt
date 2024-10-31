@@ -1,5 +1,9 @@
 package com.fugisawa.p1_function_types
 
+fun fazerAlgoComNome(nome: String, limite: Int): String {
+    return "teste"
+}
+
 // Usando tipos função como parâmetros de função
 fun calcular(a: Int, b: Int, operacao: (Int, Int) -> Int): Int {
     return operacao(a, b)
@@ -27,6 +31,8 @@ val dividirSemNomes: (Int, Int) -> Int = { a, b -> a / b }
 fun main() {
     val resultado = calcular(10, 5, subtrair)
     println("Resultado: $resultado") // Saída: Resultado: 5
+
+    val resultado2 = calcular(10, 5, dividir)
 
     val calc = Calculadora()
     calc.operacao = soma
