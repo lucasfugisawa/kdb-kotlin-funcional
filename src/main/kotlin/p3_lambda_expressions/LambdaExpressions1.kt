@@ -1,4 +1,4 @@
-package p3_lamba_expressions
+package com.fugisawa.p3_lambda_expressions
 
 // Lambda simples com parâmetro nomeado
 val saudacao: (String) -> Unit = { nome ->
