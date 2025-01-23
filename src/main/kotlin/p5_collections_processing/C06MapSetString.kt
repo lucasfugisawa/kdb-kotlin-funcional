@@ -34,7 +34,7 @@ fun main() {
 
     // STRING
     // Podemos tratar string como coleção de caracteres
-    val message = "Kotlin"
+    val message: String = "Kotlin"
     val chars = message.map { it.uppercaseChar() }
     println("\nString -> Lista de chars maiúsculos: $chars")
 

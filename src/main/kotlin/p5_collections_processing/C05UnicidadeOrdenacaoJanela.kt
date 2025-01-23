@@ -21,7 +21,7 @@ fun main() {
 
     // sorted -> ordena no modo natural (para números)
     // sortedBy -> ordena de acordo com um critério
-    val sortedByName = students.sortedBy { it.name }
+    val sortedByName = students.sortedBy { it.active }
     println("\nOrdenado pelo nome (sortedBy): ${sortedByName.map { it.name }}")
 
     // sortedWith -> recebe um Comparator (ordenações mais complexas)
@@ -45,7 +45,7 @@ fun main() {
             .thenBy { it.category }
             .then(compareBy(nullsLast()) { it.priority })
             .thenBy { it.amount }
-        )
+    )
     sortedList.forEach { println(it) }
 
     // Em coleções mutáveis, há também a função sort
@@ -60,7 +60,7 @@ fun main() {
     // zip -> combina duas listas em pares
     val listA = listOf(1, 2, 3)
     val listB = listOf("A", "B", "C", "Extra")
-    val zipped = listA.zip(listB)
+    val zipped = listA zip listB
     println("\nzip: $zipped")  // tamanho = min(listA, listB)
 
     // zipWithNext -> combina cada elemento com o próximo
