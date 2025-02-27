@@ -6,7 +6,7 @@ package com.fugisawa.p7_dsl_conceitos
 // - Extension Functions (funções de extensão)
 // - Function Types with Receiver (tipos de função que agem como extensões)
 // - Lambdas com receiver (possibilidade de chamar this implicitamente dentro da lambda)
-// - E a anotação @DslMarker para organizar e aumentar a segurança do nosso "mini-linguagem"
+// - E a anotação @DslMarker para organizar e aumentar a segurança da nossa "mini-linguagem"
 //
 // Benefícios:
 // legibilidade e fluidez: escrever estruturas que parecem gramáticas específicas
@@ -24,7 +24,7 @@ fun String.circundaComParenteses(): String {
 }
 
 fun main1() {
-    val texto = "Kotlin"
+    val texto: String = "Kotlin"
     println(texto.circundaComParenteses()) // Saída: (Kotlin)
 }
 
@@ -32,7 +32,7 @@ fun main1() {
 // Assim como funções podem ser anônimas (atribuídas a variáveis val), extension functions também podem ser anônimas e atribuídas a variáveis.
 
 // Exemplo de função anônima normal (sem receiver)
-val minhaFuncaoAnonima = fun(x: Int, y: Int): Int {
+var minhaFuncaoAnonima = fun(x: Int, y: Int): Int {
     return x + y
 }
 

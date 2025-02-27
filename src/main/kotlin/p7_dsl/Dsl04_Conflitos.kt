@@ -8,6 +8,7 @@ package com.fugisawa.p7_dsl_conflitos
 annotation class ProfileDsl
 
 // Classes de Domínio
+@ProfileDsl
 class UserProfile {
     var name: String = ""
     var age: Int = 0
@@ -23,6 +24,7 @@ class UserProfile {
         }
     }
 }
+@ProfileDsl
 class Address {
     // "name" descreve o tipo de endereço (Residencial, Comercial, etc.)
     var name: String = ""
@@ -31,9 +33,11 @@ class Address {
 }
 
 // Builders Internos:
+@ProfileDsl
 fun userProfile(block: UserProfile.() -> Unit): UserProfile = UserProfile().apply(block)
 
 // Note que agora "address" cria e adiciona um novo Address à lista
+@ProfileDsl
 fun UserProfile.address(block: Address.() -> Unit) {
     val newAddress = Address().apply(block)
     addresses += newAddress

@@ -53,13 +53,13 @@ fun userProfile(config: UserProfile.() -> Unit): UserProfile {
 fun UserProfile.address(block: Address.() -> Unit) {
     val endereco = Address()
     endereco.block()
-    this.address = endereco
+    address = endereco
 }
 
 // Exemplo de uso
 fun main5() {
     val profile = userProfile {
-        name = "Alice"
+        name = "Lucas"
         age = 30
         address {
             street = "Main Street"

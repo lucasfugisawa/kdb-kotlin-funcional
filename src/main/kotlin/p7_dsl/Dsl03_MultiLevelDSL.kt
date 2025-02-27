@@ -39,6 +39,11 @@ fun UserProfile.address(block: Address.() -> Unit) {
     addresses += newAddress
 }
 
+val unparsedAddresses = listOf(
+    "Residencial,Main Street,Springfield",
+    "Comercial,Downtown Avenue,Metropolis",
+)
+
 // Exemplo de uso
 fun main() {
     val profile = userProfile {
@@ -54,6 +59,15 @@ fun main() {
             name = "Comercial"
             street = "Downtown Avenue"
             city = "Metropolis"
+        }
+
+        unparsedAddresses.forEach {
+            val (name, street, city) = it.split(",")
+            address {
+                this.name = name
+                this.street = street
+                this.city = city
+            }
         }
     }
 
